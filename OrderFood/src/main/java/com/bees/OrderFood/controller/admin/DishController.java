@@ -1,5 +1,6 @@
 package com.bees.OrderFood.controller.admin;
 
+import com.bees.OrderFood.dto.DishDto;
 import com.bees.OrderFood.responsemessage.DishResponse;
 import com.bees.OrderFood.model.Dish;
 import com.bees.OrderFood.model.DishType;
@@ -30,6 +31,11 @@ public class DishController {
     public Page<Dish> listall(@PathVariable(name = "pageNumber") Integer pageNumber,
                               @PathVariable(name = "pageSize") Integer pageSize){
         return dishService.findAllDish(PageRequest.of(pageNumber,pageSize));
+    }
+
+    @GetMapping("/list-dish")
+    public DishDto listAllDto(){
+        return dishService.findAllDto();
     }
     @PostMapping("/add-dish")
     public DishResponse adddish(@RequestParam("type_dish_id") Long typedishid,
